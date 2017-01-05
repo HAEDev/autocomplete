@@ -1,0 +1,13 @@
+{
+    "name": "HAEDev/autocomplete",
+    "type": "library",
+    "repositories": [
+        {
+            "url": "https://github.com/HAEDev/awesomplete",
+            "type": "git"
+        }
+    ],
+    "require": {
+        "LeaVerou/awesomplete": "dev-gh-pages"
+    }
+}
