@@ -1,6 +1,8 @@
 {
     "name": "HAEDev/autocomplete",
     "type": "library",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "repositories": [
         {
             "url": "https://github.com/HAEDev/awesomplete",
@@ -11,7 +13,6 @@
         "LeaVerou/awesomplete": "@dev"
     },
     "config": {
-        "preferred-install": "dist",
-        "minimum-stability": "dev"
+        "preferred-install": "dist"
     }
 }
