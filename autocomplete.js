@@ -6,6 +6,10 @@ function autocomplete(elem, url, options) {
         text: ""
     };
     var atts = ["onSuccess", "onError", "onSelect", "multiSelect"];
+    var awesompleteOptions = {
+        minChars: 1,
+        autoFirst: true
+    };
 
     // parse options
     if (options) {
@@ -17,17 +21,21 @@ function autocomplete(elem, url, options) {
                 }
             }
         }
+
+        // awesomplete options
+        if ("awesomplete" in options) {
+            for (var i in options.awesomplete) {
+                awesompleteOptions[i] = options.awesomplete[i];
+            }
+        }
     }
-    
+
     for (var i=0, n=atts.length; i<n; i++) {
         var att = atts[i];
         this[att] = options && att in options? options[att] : null;
     }
-    
-    this.awesomplete = new Awesomplete(elem, {
-        minChars: 1,
-        autoFirst: true
-    });
+
+    this.awesomplete = new Awesomplete(elem, awesompleteOptions);
 
     switch (typeof(url)) {
         case "string":
@@ -63,7 +71,7 @@ function autocomplete(elem, url, options) {
             _this.awesomplete.list = url;
             break;
     }
-    
+
     // when item is selected
     if (typeof(this.onSelect) == "function") {
         window.addEventListener("awesomplete-selectcomplete", function(e) {
