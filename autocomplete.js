@@ -5,7 +5,7 @@ function autocomplete(elem, url, options) {
     this.data = {
         text: ""
     };
-    var atts = ["onSuccess", "onError", "onSelect", "multiSelect"];
+    var atts = ["onSuccess", "onError", "onSelect", "onDelete", "multiSelect"];
     var awesompleteOptions = {
         minChars: 1,
         autoFirst: true
@@ -41,7 +41,7 @@ function autocomplete(elem, url, options) {
         case "string":
             // key listener
             $(elem).on("keyup", function() {
-                var text = $(this).val();
+                var text = $(this).val().trim();
                 if (text.length < 3) {
                     return;
                 }
@@ -70,6 +70,15 @@ function autocomplete(elem, url, options) {
         case "object":
             _this.awesomplete.list = url;
             break;
+    }
+    
+    if (typeof(this.onDelete) == "function") {
+        $(this.elem).on("keyup", function() {
+            var text = $(this).val().trim();
+            if (text.length == 0) {
+                _this.onDelete();
+            }
+        });
     }
 
     // when item is selected
