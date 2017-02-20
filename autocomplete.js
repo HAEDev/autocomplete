@@ -2,10 +2,11 @@ function autocomplete(elem, url, options) {
     var _this = this;
 
     this.elem = elem;
+    this.currentValue = '';
     this.data = {
         text: ""
     };
-    var atts = ["onSuccess", "onError", "onSelect", "onDelete", "multiSelect"];
+    var atts = ["onSuccess", "onError", "onSelect", "onChange", "onDelete", "multiSelect"];
     var awesompleteOptions = {
         minChars: 1,
         autoFirst: true
@@ -70,6 +71,16 @@ function autocomplete(elem, url, options) {
         case "object":
             _this.awesomplete.list = url;
             break;
+    }
+
+    if (typeof(this.onChange) == "function") {
+        $(this.elem).on("keyup", function() {
+            var text = $(this).val().trim();
+            if(_this.currentValue !== text) {
+                _this.onChange();
+            }
+            _this.currentValue = text;
+        });
     }
     
     if (typeof(this.onDelete) == "function") {
