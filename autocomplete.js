@@ -6,7 +6,7 @@ function autocomplete(elem, url, options) {
     this.data = {
         text: ""
     };
-    var atts = ["onSuccess", "onError", "onSelect", "onChange", "onDelete", "multiSelect"];
+    var atts = ["onSuccess", "onError", "onSelect", "onChange", "onDelete", "onHighlight", "multiSelect"];
     var awesompleteOptions = {
         minChars: 1,
         autoFirst: true
@@ -101,6 +101,16 @@ function autocomplete(elem, url, options) {
                     $(_this.elem).val("");
                 }
                 _this.onSelect(e);
+            }
+        }, false);
+    }
+
+    // when item is highlighted
+    if (typeof(this.onHighlight) == "function") {
+        window.addEventListener("awesomplete-highlight", function(e) {
+            var target = e.target;
+            if (target === _this.elem) {
+                _this.onHighlight(e);
             }
         }, false);
     }
