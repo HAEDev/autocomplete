@@ -41,30 +41,32 @@ function autocomplete(elem, url, options) {
     switch (typeof(url)) {
         case "string":
             // key listener
-            $(elem).on("keyup", function() {
-                var text = $(this).val().trim();
-                if (text.length < 3) {
-                    return;
-                }
-
-                _this.data.text = text;
-
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    dataType: "json",
-                    data: _this.data,
-                    success: function(result) {
-                        if (typeof(_this.onSuccess) == "function") {
-                            _this.awesomplete.list = _this.onSuccess(result);
-                        }
-                    },
-                    error: function() {
-                        if (typeof(_this.onError) == "function") {
-                            _this.onError();
-                        }
+            $(elem).on("keyup", function(event) {
+                if ($.inArray(event.keyCode, arrowKeys) == -1) {
+                    var text = $(this).val().trim();
+                    if (text.length < 3) {
+                        return;
                     }
-                });
+
+                    _this.data.text = text;
+
+                    $.ajax({
+                        url: url,
+                        type: "GET",
+                        dataType: "json",
+                        data: _this.data,
+                        success: function (result) {
+                            if (typeof(_this.onSuccess) == "function") {
+                                _this.awesomplete.list = _this.onSuccess(result);
+                            }
+                        },
+                        error: function () {
+                            if (typeof(_this.onError) == "function") {
+                                _this.onError();
+                            }
+                        }
+                    });
+                }
             });
             break;
 
