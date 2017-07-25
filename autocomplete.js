@@ -42,7 +42,7 @@ function autocomplete(elem, url, options) {
         case "string":
             // key listener
             $(elem).on("keyup", function(event) {
-                if ($.inArray(event.keyCode, arrowKeys) == -1) {
+                if ($.inArray(event.keyCode, [37, 38, 39, 40]) == -1) {
                     var text = $(this).val().trim();
                     if (text.length < 3) {
                         return;
