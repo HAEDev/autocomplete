@@ -6,7 +6,16 @@ function autocomplete(elem, url, options) {
     this.data = {
         text: ""
     };
-    var atts = ["onSuccess", "onError", "onSelect", "onChange", "onDelete", "onHighlight", "multiSelect"];
+    var atts = {
+        "onSuccess": null,
+        "onError": null,
+        "onSelect": null,
+        "onChange": null,
+        "onDelete": null,
+        "onHighlight": null,
+        "multiSelect": false,
+        "minChars": 3
+    };
     var awesompleteOptions = {
         minChars: 1,
         autoFirst: true
@@ -31,9 +40,8 @@ function autocomplete(elem, url, options) {
         }
     }
 
-    for (var i=0, n=atts.length; i<n; i++) {
-        var att = atts[i];
-        this[att] = options && att in options? options[att] : null;
+    for (var att in atts) {
+        this[att] = options && att in options? options[att] : atts[att];
     }
 
     this.awesomplete = new Awesomplete(elem, awesompleteOptions);
@@ -44,7 +52,7 @@ function autocomplete(elem, url, options) {
             $(elem).on("keyup", function(event) {
                 if ($.inArray(event.keyCode, [37, 38, 39, 40]) == -1) {
                     var text = $(this).val().trim();
-                    if (text.length < 3) {
+                    if (text.length < _this.minChars) {
                         return;
                     }
 
