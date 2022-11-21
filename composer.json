@@ -1,16 +1,16 @@
 {
-    "name": "HAEDev/autocomplete",
+    "name": "haedev/autocomplete",
     "type": "library",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": [
         {
-            "url": "https://github.com/HAEDev/awesomplete",
+            "url": "https://github.com/haedev/awesomplete",
             "type": "git"
         }
     ],
     "require": {
-        "LeaVerou/awesomplete": "gh-pages"
+        "leaverou/awesomplete": "gh-pages"
     },
     "config": {
         "preferred-install": "dist"
