@@ -1,5 +1,5 @@
 {
-    "name": "HAEDev/autocomplete",
+    "name": "haedev/autocomplete",
     "type": "library",
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "LeaVerou/awesomplete": "gh-pages"
+        "leaverou/awesomplete": "dev-gh-pages"
     },
     "config": {
         "preferred-install": "dist"
