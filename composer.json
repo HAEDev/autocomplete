@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "leaverou/awesomplete": "dev-gh-pages"
+        "leaverou/awesomplete": "gh-pages"
     },
     "config": {
         "preferred-install": "dist"
